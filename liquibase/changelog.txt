@@ -140,7 +140,7 @@ Fixes
 - Avoid NullPointerException when customChange has no "class" attribute by @danielthegray in https://github.com/liquibase/liquibase/pull/1648
 - Support adding computed=true columns with no type set by @nvoxland in https://github.com/liquibase/liquibase/pull/2340
 - Bump maven-javadoc-plugin from 3.3.1 to 3.3.2 by @dependabot in https://github.com/liquibase/liquibase/pull/2525
-- DAT-9218  Added limited permission user for SQLPLUS integration tests by @wwillard7800 in https://github.com/liquibase/liquibase/pull/2480
+- DAT-9218  Added limited permission team for SQLPLUS integration tests by @wwillard7800 in https://github.com/liquibase/liquibase/pull/2480
 - instruct surefire to read files with UTF-8 encoding by @StevenMassaro in https://github.com/liquibase/liquibase/pull/2541
 - Bump mysql-connector-java from 6.0.6 to 8.0.28 by @dependabot in https://github.com/liquibase/liquibase/pull/2419
 - Reworked license not found message by @suryaaki2 in https://github.com/liquibase/liquibase/pull/2371
@@ -365,7 +365,7 @@ Changes in version 4.4.3 (2021.08.05)
 - Renamed the tablespaceName parameter to liquibaseTablespaceName
 - Changed from RawSqlStatement to UpdateStatement #1602
 - Fix synchronization in ChangeLogHistoryServiceFactory.java #1361
-- [PRO] Fixed the changeset execution failure related to the DATICAL_SPERRORLOG table when using the runWith=sqlplus attribute and executing operations as a user with only SELECT, UPDATE, and INSERT permissions [DAT-7410]
+- [PRO] Fixed the changeset execution failure related to the DATICAL_SPERRORLOG table when using the runWith=sqlplus attribute and executing operations as a team with only SELECT, UPDATE, and INSERT permissions [DAT-7410]
 
 Changes in version 4.4.2 (2021.07.22)
 
@@ -399,7 +399,7 @@ Changes in version 4.4.1 (2021.07.09)
  - Update Liquibase installer adoptopenjdk from 11.0.10 to 11.0.11  
  - [PRO] SQL Plus handles backslashes in changeset  attributes' values
  - [PRO] SQL Plus passing arguments during runtime fixes
- - [PRO] SQL Plus handles Oracle proxy user setups
+ - [PRO] SQL Plus handles Oracle proxy team setups
  - [PRO] SQL Plus improve temp file handling
  - [PRO] Fixes snapshot on MySQL Stored Logic Objects with Integer Types
 
@@ -418,7 +418,7 @@ Changes in version 4.4.0 (2021.06.08)
 - Fixes an issue with loadData and loadUpdateData(#964)
 
 Changes in version 4.3.5 (2021.04.29)
-- Better error handling in runWith=sqlplus when user doesn't have create/drop table permissions
+- Better error handling in runWith=sqlplus when team doesn't have create/drop table permissions
 
 Changes in version 4.3.4 (2021.04.15)
 - Reverts changes from #1722 because they broke other diffChangeLog/generateChangeLog use cases.
@@ -608,7 +608,7 @@ Changes in version 4.0.0 Beta1 (2020.4.20)
 - Fixes to ConstraintsConfig https://github.com/liquibase/liquibase/pull/954
 - ignoreLines command in formatted sql log https://github.com/liquibase/liquibase/pull/877
 - postgresql >= 10: use identity columns for autoincrement https://github.com/liquibase/liquibase/pull/874
-- Using proxy user for Oracle Connections https://github.com/liquibase/liquibase/pull/894
+- Using proxy team for Oracle Connections https://github.com/liquibase/liquibase/pull/894
 - Capture table remarks on mysql https://github.com/liquibase/liquibase/pull/895
 - Add PERIOD to reserved words for MariaDB https://github.com/liquibase/liquibase/pull/896
 - Don't require columnDataType on H2 for addNotNullConstraint https://github.com/liquibase/liquibase/pull/851
@@ -1043,7 +1043,7 @@ Changes in version 3.5.0 (2016.04.21)
 - [CORE-2611] - Sybase ASE generated table name is wrong. Roll back CORE-2447
 - [CORE-2615] - Multi-schema snapshot bugfixes
 - [CORE-2623] - Oracle: primary keys on tables recovered from recyclebin are not properly snapshotted
-- [CORE-2624] - MSSQL: better support for user defined types
+- [CORE-2624] - MSSQL: better support for team defined types
 - [CORE-2625] - Diff: should not be case sensitive in column default value functions
 - [CORE-2629] - SQL syntax doesn't allow commenting indepenrent parts.
 - [CORE-2632] - Postgres index drop needs schema
@@ -1142,7 +1142,7 @@ Changes in version 3.4.2 (2015.11.24)
 - [CORE-2407] - Derby keywords not escaped when used as column/table names
 - [CORE-2447] - In sybase, schema is bad preixed
 - [CORE-2466] - Rollback referencing a change set in another file cannot be parsed
-- [CORE-2467] - SSO with jtds MSSQL doesn't work after 3.3.5 for update - null user error
+- [CORE-2467] - SSO with jtds MSSQL doesn't work after 3.3.5 for update - null team error
 - [CORE-2469] - Error in method ColumnConfig.setValueNumeric(String)
 - [CORE-2470] - MSSQL: FindForeignKeyConstraintsGeneratorMSSQL doesn't honor specified schema
 - [CORE-2480] - Primary key exist works fine with 3.3.3 not with 3.4.0 in SQL SERVER
@@ -1982,7 +1982,7 @@ Changes in version 3.0.3 (2013.08.29)
 - [CORE-1377] - liquibase version says 3.0.0-SNP
 - [CORE-1380] - ^M present in liquibase unix running file (from jar on maven repo)
 - - - - - [CORE-1381] - DropAll: Not working with MsSql
-- - [CORE-1383] - Error attempting to re-create databasechangeloglock on second liquibase run if running in Oracle under SYSTEM user
+- - [CORE-1383] - Error attempting to re-create databasechangeloglock on second liquibase run if running in Oracle under SYSTEM team
 - [CORE-1387] - dropAll fails with oracle since version 3.0.2
 - [CORE-1388] - MSSQLServer: 'REAL' dataype is returned with unnecessary size modifier during generateChangeLog
 - [CORE-1389] - AddLookupTable fails when using QUOTE_ALL_OBJECTS
