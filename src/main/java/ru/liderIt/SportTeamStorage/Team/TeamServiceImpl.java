@@ -4,15 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.liderIt.SportTeamStorage.Member.Member;
 import ru.liderIt.SportTeamStorage.Member.MemberDtoOut;
-import ru.liderIt.SportTeamStorage.Member.MemberRepository;
 import ru.liderIt.SportTeamStorage.Member.MemberService;
 import ru.liderIt.SportTeamStorage.exceptions.IncorrectParameterException;
 import ru.liderIt.SportTeamStorage.exceptions.NotFoundException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -34,8 +31,8 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<TeamDtoOut> getAllTeams(List<String> sports, String rangeStart, String rangeEnd) {
         List<Team> teams = new ArrayList<>();
-        if (rangeStart == null && rangeEnd == null){
-            if (sports == null || sports.isEmpty()){
+        if (rangeStart == null && rangeEnd == null) {
+            if (sports == null || sports.isEmpty()) {
                 teams.addAll(repository.findAll());
             } else {
                 for (String sport : sports) {
@@ -53,7 +50,7 @@ public class TeamServiceImpl implements TeamService {
                 log.error("Границы периода поиска указаны неверно. Начало должно быть указано в прошлом");
                 throw new IncorrectParameterException("Границы периода поиска указаны неверно. Начало должно быть указано в прошлом");
             }
-            if (sports == null || sports.isEmpty()){
+            if (sports == null || sports.isEmpty()) {
                 teams.addAll(repository.findTeamsByRange(start, end));
             } else {
                 for (String sport : sports) {

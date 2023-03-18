@@ -3,9 +3,6 @@ package ru.liderIt.SportTeamStorage.Team;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

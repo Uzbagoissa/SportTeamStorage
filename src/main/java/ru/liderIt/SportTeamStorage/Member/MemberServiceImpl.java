@@ -4,13 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.liderIt.SportTeamStorage.Team.Team;
-import ru.liderIt.SportTeamStorage.Team.TeamDtoOut;
-import ru.liderIt.SportTeamStorage.Team.TeamMapper;
-import ru.liderIt.SportTeamStorage.exceptions.IncorrectParameterException;
 import ru.liderIt.SportTeamStorage.exceptions.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -31,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberDtoOut> getAllMembersByTeamId(Long teamId, List<String> positions) {
         List<Member> members = new ArrayList<>();
-        if (positions == null || positions.isEmpty()){
+        if (positions == null || positions.isEmpty()) {
             members.addAll(repository.findMembersByTeamId(teamId));
         } else {
             for (String position : positions) {
@@ -46,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberDtoOut> getAllMembersWithoutTeam(List<String> positions) {
         List<Member> members = new ArrayList<>();
-        if (positions == null || positions.isEmpty()){
+        if (positions == null || positions.isEmpty()) {
             members.addAll(repository.findMembersByTeamId(null));
         } else {
             for (String position : positions) {
