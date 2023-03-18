@@ -1,0 +1,2796 @@
+{
+	"info": {
+		"_postman_id": "e788c65a-00ab-4baf-a81e-d05061dc069f",
+		"name": "SportTeamStorage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25925900"
+	},
+	"item": [
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "Попытка добавить команду без имени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sport\": \"футбол\",\n    \"foundationDate\": \"1999-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка добавить команду без вида спорта",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Реал\",\n    \"foundationDate\": \"1999-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка добавить команду без даты основания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Реал\",\n    \"sport\": \"футбол\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.name).to.eql('Реал');",
+									"    pm.expect(jsonData.sport).to.eql('футбол');",
+									"    pm.expect(jsonData.foundationDate).to.eql('1999-12-31');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Реал\",\n    \"sport\": \"футбол\",\n    \"foundationDate\": \"1999-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(2);",
+									"    pm.expect(jsonData.name).to.eql('Ювентус');",
+									"    pm.expect(jsonData.sport).to.eql('футбол');",
+									"    pm.expect(jsonData.foundationDate).to.eql('2000-12-31');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ювентус\",\n    \"sport\": \"футбол\",\n    \"foundationDate\": \"2000-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"СалаватЮлаев\",\n    \"sport\": \"хоккей\",\n    \"foundationDate\": \"2001-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(4);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Атлетико\",\n    \"sport\": \"баскетбол\",\n    \"foundationDate\": \"2001-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(5);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Челси\",\n    \"sport\": \"футбол\",\n    \"foundationDate\": \"2004-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление команды 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(6);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Буллс\",\n    \"sport\": \"баскетбол\",\n    \"foundationDate\": \"1988-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили все команды",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили все команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(6);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].name).to.eql('Реал');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(2);",
+									"    pm.expect(jsonData[1].name).to.eql('Ювентус');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(3);",
+									"    pm.expect(jsonData[2].name).to.eql('СалаватЮлаев');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(4);",
+									"    pm.expect(jsonData[3].name).to.eql('Атлетико');",
+									"",
+									"    pm.expect(jsonData[4].id).to.eql(5);",
+									"    pm.expect(jsonData[4].name).to.eql('Челси');",
+									"",
+									"    pm.expect(jsonData[5].id).to.eql(6);",
+									"    pm.expect(jsonData[5].name).to.eql('Буллс');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": ""
+								},
+								{
+									"key": "rangeStart",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили все команды по спорту (футбол)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили все команды по спорту (футбол)\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(3);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].name).to.eql('Реал');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(2);",
+									"    pm.expect(jsonData[1].name).to.eql('Ювентус');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(5);",
+									"    pm.expect(jsonData[2].name).to.eql('Челси');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=футбол",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": "футбол"
+								},
+								{
+									"key": "rangeStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили все команды по спорту (футбол, баскетбол)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили все команды по спорту (футбол, баскетбол)\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(5);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].name).to.eql('Реал');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(2);",
+									"    pm.expect(jsonData[1].name).to.eql('Ювентус');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(4);",
+									"    pm.expect(jsonData[2].name).to.eql('Атлетико');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(5);",
+									"    pm.expect(jsonData[3].name).to.eql('Челси');",
+									"",
+									"    pm.expect(jsonData[4].id).to.eql(6);",
+									"    pm.expect(jsonData[4].name).to.eql('Буллс');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=футбол, баскетбол",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": "футбол, баскетбол"
+								},
+								{
+									"key": "rangeStart",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка получить все команды с некорректным периодом (начало позже конца)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=&rangeStart=2011-12-31&rangeEnd=2003-12-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": ""
+								},
+								{
+									"key": "rangeStart",
+									"value": "2011-12-31"
+								},
+								{
+									"key": "rangeEnd",
+									"value": "2003-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка получить все команды с некорректным периодом (начало в будущем)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=&rangeStart=2024-12-31&rangeEnd=2030-12-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": ""
+								},
+								{
+									"key": "rangeStart",
+									"value": "2024-12-31"
+								},
+								{
+									"key": "rangeEnd",
+									"value": "2030-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили все команды за период по дате основания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили все команды за период по дате основания\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(3);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(2);",
+									"    pm.expect(jsonData[0].name).to.eql('Ювентус');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(3);",
+									"    pm.expect(jsonData[1].name).to.eql('СалаватЮлаев');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(4);",
+									"    pm.expect(jsonData[2].name).to.eql('Атлетико');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=&rangeStart=1999-12-31&rangeEnd=2003-12-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": ""
+								},
+								{
+									"key": "rangeStart",
+									"value": "1999-12-31"
+								},
+								{
+									"key": "rangeEnd",
+									"value": "2003-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили все команды по спорту и за период по дате основания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили все команды по спорту и за период по дате основания\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(4);",
+									"    pm.expect(jsonData[0].name).to.eql('Атлетико');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=баскетбол&rangeStart=1999-12-31&rangeEnd=2003-12-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": "баскетбол"
+								},
+								{
+									"key": "rangeStart",
+									"value": "1999-12-31"
+								},
+								{
+									"key": "rangeEnd",
+									"value": "2003-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка обновить несуществующую команду",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"updateРеал\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams",
+								":teamId"
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновили команду 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Обновили команду 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.name).to.eql('updateРеал');",
+									"    pm.expect(jsonData.sport).to.eql('футбол');",
+									"    pm.expect(jsonData.foundationDate).to.eql('1999-12-31');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"updateРеал\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams",
+								":teamId"
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка удалить несуществующую команду",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams",
+								":teamId"
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "3333"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалили команду 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams",
+								":teamId"
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили обновленный список команд",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили обновленный список команд\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(5);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].name).to.eql('updateРеал');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(2);",
+									"    pm.expect(jsonData[1].name).to.eql('Ювентус');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(4);",
+									"    pm.expect(jsonData[2].name).to.eql('Атлетико');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(5);",
+									"    pm.expect(jsonData[3].name).to.eql('Челси');",
+									"",
+									"    pm.expect(jsonData[4].id).to.eql(6);",
+									"    pm.expect(jsonData[4].name).to.eql('Буллс');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teams?sports=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sports",
+									"value": ""
+								},
+								{
+									"key": "rangeStart",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Попытка добавить участника без имени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Роналду\",\n    \"fathersName\": \"Криштанович\",\n    \"bearthDate\": \"1985-12-31\",\n    \"position\": \"нападающий\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка добавить участника без дня рождения",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Роналду\",\n    \"firstName\": \"Криштиану\",\n    \"fathersName\": \"Криштанович\",\n    \"position\": \"нападающий\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка добавить участника без позиции",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Роналду\",\n    \"firstName\": \"Криштиану\",\n    \"fathersName\": \"Криштанович\",\n    \"bearthDate\": \"1985-12-31\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 1 команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.teamId).to.eql(1);",
+									"    pm.expect(jsonData.lastName).to.eql('Роналду');",
+									"    pm.expect(jsonData.firstName).to.eql('Криштиану');",
+									"    pm.expect(jsonData.fathersName).to.eql('Криштанович');",
+									"    pm.expect(jsonData.bearthDate).to.eql('1985-12-31');",
+									"    pm.expect(jsonData.position).to.eql('нападающий');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Роналду\",\n    \"firstName\": \"Криштиану\",\n    \"fathersName\": \"Криштанович\",\n    \"bearthDate\": \"1985-12-31\",\n    \"position\": \"нападающий\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 2 команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Зидан\",\n    \"firstName\": \"Зинедин\",\n    \"fathersName\": \"Зиданович\",\n    \"bearthDate\": \"1980-12-31\",\n    \"position\": \"нападающий\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 3 команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Буффон\",\n    \"firstName\": \"Буфа\",\n    \"fathersName\": \"Буффонович\",\n    \"bearthDate\": \"1970-12-31\",\n    \"position\": \"вратарь\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 4 команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(4);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 1,\n    \"lastName\": \"Рональдинио\",\n    \"firstName\": \"Роналд\",\n    \"fathersName\": \"Роналдович\",\n    \"bearthDate\": \"1976-12-31\",\n    \"position\": \"защитник\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 1 команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(5);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 2,\n    \"lastName\": \"Абрамович\",\n    \"firstName\": \"Абрам\",\n    \"fathersName\": \"Абрамович\",\n    \"bearthDate\": \"1966-12-31\",\n    \"position\": \"защитник\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 2 команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(6);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 2,\n    \"lastName\": \"Иванов\",\n    \"firstName\": \"Иван\",\n    \"fathersName\": \"Иванович\",\n    \"bearthDate\": \"1986-12-31\",\n    \"position\": \"нападающий\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 3 команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(7);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 2,\n    \"lastName\": \"Петров\",\n    \"firstName\": \"Петр\",\n    \"fathersName\": \"Петрович\",\n    \"bearthDate\": \"1989-12-31\",\n    \"position\": \"защитник\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление участника 4 команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+									"});",
+									"pm.test(\"Добавление участника команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(8);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamId\": 2,\n    \"lastName\": \"Гуськов\",\n    \"firstName\": \"Гусь\",\n    \"fathersName\": \"Гусевич\",\n    \"bearthDate\": \"1999-12-31\",\n    \"position\": \"вратарь\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили всех участников команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили всех участников команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(4);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(5);",
+									"    pm.expect(jsonData[0].lastName).to.eql('Абрамович');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(6);",
+									"    pm.expect(jsonData[1].lastName).to.eql('Иванов');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(7);",
+									"    pm.expect(jsonData[2].lastName).to.eql('Петров');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(8);",
+									"    pm.expect(jsonData[3].lastName).to.eql('Гуськов');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"teams",
+								":teamId"
+							],
+							"query": [
+								{
+									"key": "position",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили всех защитников команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили всех защитников команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(2);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(5);",
+									"    pm.expect(jsonData[0].lastName).to.eql('Абрамович');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(7);",
+									"    pm.expect(jsonData[1].lastName).to.eql('Петров');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/teams/:teamId?position=защитник",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"teams",
+								":teamId"
+							],
+							"query": [
+								{
+									"key": "position",
+									"value": "защитник"
+								},
+								{
+									"key": "rangeStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка обновить несуществующего участника",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"position\": \"защитник\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/:memberId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								":memberId"
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновили участника 1 команды 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Обновили участника 1 команды 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.teamId).to.eql(1);",
+									"    pm.expect(jsonData.lastName).to.eql('Роналду');",
+									"    pm.expect(jsonData.firstName).to.eql('Криштиану');",
+									"    pm.expect(jsonData.fathersName).to.eql('Криштанович');",
+									"    pm.expect(jsonData.bearthDate).to.eql('1985-12-31');",
+									"    pm.expect(jsonData.position).to.eql('защитник');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"position\": \"защитник\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/:memberId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								":memberId"
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка удалить несуществующего участника",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/members/:memberId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								":memberId"
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "777"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удалили участника 3 команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/members/:memberId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								":memberId"
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Попытка обновить команду несуществующего участника",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "2"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновили команду участника",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Обновили участника 1 команды 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.teamId).to.eql(2);",
+									"    pm.expect(jsonData.lastName).to.eql('Роналду');",
+									"    pm.expect(jsonData.firstName).to.eql('Криштиану');",
+									"    pm.expect(jsonData.fathersName).to.eql('Криштанович');",
+									"    pm.expect(jsonData.bearthDate).to.eql('1985-12-31');",
+									"    pm.expect(jsonData.position).to.eql('защитник');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "2"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили обновленный список участников команды 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили обновленный список участников команды 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(4);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].lastName).to.eql('Роналду');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(5);",
+									"    pm.expect(jsonData[1].lastName).to.eql('Абрамович');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(6);",
+									"    pm.expect(jsonData[2].lastName).to.eql('Иванов');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(8);",
+									"    pm.expect(jsonData[3].lastName).to.eql('Гуськов');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"teams",
+								":teamId"
+							],
+							"query": [
+								{
+									"key": "position",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams & Members",
+			"item": [
+				{
+					"name": "Удалили команду 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/teams/:teamId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teams",
+								":teamId"
+							],
+							"variable": [
+								{
+									"key": "teamId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получили всех спортсменов без команды",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Получили всех спортсменов без команды\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(4);",
+									"",
+									"    pm.expect(jsonData[0].id).to.eql(1);",
+									"    pm.expect(jsonData[0].lastName).to.eql('Роналду');",
+									"",
+									"    pm.expect(jsonData[1].id).to.eql(5);",
+									"    pm.expect(jsonData[1].lastName).to.eql('Абрамович');",
+									"",
+									"    pm.expect(jsonData[2].id).to.eql(6);",
+									"    pm.expect(jsonData[2].lastName).to.eql('Иванов');",
+									"",
+									"    pm.expect(jsonData[3].id).to.eql(8);",
+									"    pm.expect(jsonData[3].lastName).to.eql('Гуськов');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/noTeams",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"noTeams"
+							],
+							"query": [
+								{
+									"key": "position",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeStart",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "rangeEnd",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перевели участника 1 команды 2 в команду 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Перевели участника 1 команды 2 в команду 6\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(5);",
+									"    pm.expect(jsonData.teamId).to.eql(6);",
+									"    pm.expect(jsonData.lastName).to.eql('Абрамович');",
+									"    pm.expect(jsonData.firstName).to.eql('Абрам');",
+									"    pm.expect(jsonData.fathersName).to.eql('Абрамович');",
+									"    pm.expect(jsonData.bearthDate).to.eql('1966-12-31');",
+									"    pm.expect(jsonData.position).to.eql('защитник');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "6"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перевели участника 2 команды 2 в команду 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Перевели участника 2 команды 2 в команду 6\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(6);",
+									"    pm.expect(jsonData.teamId).to.eql(6);",
+									"    pm.expect(jsonData.lastName).to.eql('Иванов');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "6"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перевели участника 3 команды 2 в команду 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Перевели участника 3 команды 2 в команду 6\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(8);",
+									"    pm.expect(jsonData.teamId).to.eql(6);",
+									"    pm.expect(jsonData.lastName).to.eql('Гуськов');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "6"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перевели участника 4 команды 2 в команду 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"pm.test(\"Перевели участника 4 команды 2 в команду 6\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"    pm.expect(jsonData.teamId).to.eql(6);",
+									"    pm.expect(jsonData.lastName).to.eql('Роналду');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/members/changeTeam/:memberId?newTeamId=6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"members",
+								"changeTeam",
+								":memberId"
+							],
+							"query": [
+								{
+									"key": "newTeamId",
+									"value": "6"
+								}
+							],
+							"variable": [
+								{
+									"key": "memberId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
