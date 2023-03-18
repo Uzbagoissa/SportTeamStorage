@@ -13,12 +13,13 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TeamDtoIn {
-    Long id;
     @NotNull
     @NotBlank(message = "Ошибка: name пустое или содержит только пробелы")
     String name;
     @NotNull
     @NotBlank(message = "Ошибка: sport пустое или содержит только пробелы")
     String sport;
+    @NotNull
+    @NotBlank(message = "Ошибка: foundationDate пустое или содержит только пробелы")
     String foundationDate;
 }

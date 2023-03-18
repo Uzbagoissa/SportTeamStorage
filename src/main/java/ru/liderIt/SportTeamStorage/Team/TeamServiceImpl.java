@@ -4,6 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.liderIt.SportTeamStorage.Member.Member;
+import ru.liderIt.SportTeamStorage.Member.MemberDtoOut;
+import ru.liderIt.SportTeamStorage.Member.MemberRepository;
+import ru.liderIt.SportTeamStorage.Member.MemberService;
 import ru.liderIt.SportTeamStorage.exceptions.IncorrectParameterException;
 import ru.liderIt.SportTeamStorage.exceptions.NotFoundException;
 
@@ -20,6 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository repository;
+    private final MemberService memberService;
 
     @Override
     public TeamDtoOut saveTeam(TeamDtoIn teamDtoIn) {
@@ -65,22 +70,20 @@ public class TeamServiceImpl implements TeamService {
     public TeamDtoOut updateTeam(long teamId, TeamDtoInUpdate teamDtoInUpdate) {
         teamValid(teamId);
         Team team = repository.getById(teamId);
-        if (teamDtoInUpdate.getName() == null) {
-            teamDtoInUpdate.setName(team.getName());
-        }
-        if (teamDtoInUpdate.getSport() == null) {
-            teamDtoInUpdate.setSport(team.getSport());
-        }
-        if (teamDtoInUpdate.getFoundationDate() == null) {
-            teamDtoInUpdate.setFoundationDate(TeamMapper.localDateToString(team.getFoundationDate()));
-        }
-        teamDtoInUpdate.setId(teamId);
-        return TeamMapper.toTeamDtoOut(repository.save(TeamMapper.toTeam(teamDtoInUpdate)));
+        team.setName(teamDtoInUpdate.getName() == null ? team.getName() : teamDtoInUpdate.getName());
+        team.setSport(teamDtoInUpdate.getSport() == null ? team.getSport() : teamDtoInUpdate.getSport());
+        team.setFoundationDate(teamDtoInUpdate.getFoundationDate() == null ? team.getFoundationDate() : TeamMapper.stringToLocalDate(teamDtoInUpdate.getFoundationDate()));
+        team.setId(teamId);
+        return TeamMapper.toTeamDtoOut(repository.save(team));
     }
 
     @Override
     public void removeTeam(long teamId) {
         teamValid(teamId);
+        List<MemberDtoOut> members = memberService.getAllMembersByTeamId(teamId, null);
+        for (MemberDtoOut member : members) {
+            memberService.updateTeamOfMember(member.getId(), null);
+        }
         repository.deleteById(teamId);
     }
 

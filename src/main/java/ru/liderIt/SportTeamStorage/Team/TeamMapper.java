@@ -3,6 +3,7 @@ package ru.liderIt.SportTeamStorage.Team;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,15 +27,6 @@ public final class TeamMapper {
         team.setName(teamDtoIn.getName());
         team.setSport(teamDtoIn.getSport());
         team.setFoundationDate(stringToLocalDate(teamDtoIn.getFoundationDate()));
-        return team;
-    }
-
-    public static Team toTeam(TeamDtoInUpdate teamDtoInUpdate) {
-        Team team = new Team();
-        team.setId(teamDtoInUpdate.getId());
-        team.setName(teamDtoInUpdate.getName());
-        team.setSport(teamDtoInUpdate.getSport());
-        team.setFoundationDate(stringToLocalDate(teamDtoInUpdate.getFoundationDate()));
         return team;
     }
 

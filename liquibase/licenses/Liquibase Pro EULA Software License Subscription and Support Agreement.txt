@@ -34,7 +34,7 @@ c. Evaluate the Software for the purpose of competing with Liquibase Pro or
 operate the Software other than in accordance with its technical documentation.
 
 3. PROPRIETARY RIGHTS AND MUTUAL CONFIDENTIALITY.
-a. Proprietary Rights. The Software, workflow processes, team interface,
+a. Proprietary Rights. The Software, workflow processes, member interface,
 designs and other technologies provided by Liquibase as part of the Software are
 the proprietary property of Liquibase and its licensors, and all right, title and
 interest in and to such items, including all associated intellectual property
