@@ -16,8 +16,8 @@
 	<properties>
 		<liquibase.url>jdbc:postgresql://localhost:5432/SportTeamStorage</liquibase.url>
 		<liquibase.driver>org.postgresql.Driver</liquibase.driver>
-		<liquibase.username>user</liquibase.username>
-		<liquibase.password>password</liquibase.password>
+		<liquibase.username>password</liquibase.username>
+		<liquibase.password>password12345</liquibase.password>
 		<liquibase.changeLogFile>src/main/resources/db/changelog/changelog.xml</liquibase.changeLogFile>
 		<java.version>1.8</java.version>
 	</properties>
