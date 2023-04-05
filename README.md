@@ -1,4 +1,6 @@
 # SportTeamStorage
+# Приложение для хранения/изменения/добавления спортивных команд и спортсменов
+## Примененный стек технологий: Spring Boot, Maven, Hibernate, Lombok, Liquibase
 
 ![](pictures/diagram.png)
 
